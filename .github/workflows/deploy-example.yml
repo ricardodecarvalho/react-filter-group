@@ -17,12 +17,10 @@ jobs:
           node-version: 20
 
       - name: Install dependencies
-        run: |
-          npm run example
+        run: npm install
 
       - name: Build
-        run: |
-          npm run example:build
+        run: npm run example:build
 
       - name: Disable Jekyll
         run: |
