@@ -8,6 +8,7 @@ coverage/
 
 # Production
 dist/
+!example/dist/
 build/
 
 # Misc
