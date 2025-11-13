@@ -9,6 +9,10 @@ export default defineConfig({
   plugins: [react()],
   root: "example",
   base: "/react-filter-group/",
+  build: {
+    outDir: "dist",
+    emptyOutDir: true,
+  },
   resolve: {
     alias: {
       "react-filter-group": path.resolve(__dirname, "./src"),

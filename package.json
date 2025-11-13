@@ -13,7 +13,7 @@
     "build": "rollup -c",
     "dev": "rollup -c -w",
     "example": "vite example",
-    "example:build": "vite build example",
+    "example:build": "vite build example --base=/react-filter-group/",
     "test": "jest",
     "test:watch": "jest --watch",
     "lint": "eslint src --ext .ts,.tsx",
