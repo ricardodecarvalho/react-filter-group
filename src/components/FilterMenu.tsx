@@ -1,7 +1,7 @@
-import { FilterMenuContainer } from './FilterGroup.styles';
-import type { FilterMenuProps, LogicOperator } from './FilterGroup.types';
-import { createEmptyFilter, createEmptyGroup } from './util';
-import { useFilterGroupConfig } from './config';
+import { FilterMenuContainer } from "./FilterGroup.styles";
+import type { FilterMenuProps, LogicOperator } from "./FilterGroup.types";
+import { createEmptyFilter, createEmptyGroup } from "./util";
+import { useFilterGroupConfig } from "./config";
 
 const FilterMenu = ({
   filter,
@@ -11,7 +11,12 @@ const FilterMenu = ({
   level = 0,
 }: FilterMenuProps) => {
   const { components } = useFilterGroupConfig();
-  const { LogicButton, AddExpressionButton, AddGroupButton, RemoveGroupButton } = components;
+  const {
+    LogicButton,
+    AddExpressionButton,
+    AddGroupButton,
+    RemoveGroupButton,
+  } = components;
 
   const addFilter = (): void => {
     const newFilters = [...filter.filters, createEmptyFilter(fields)];
@@ -45,9 +50,7 @@ const FilterMenu = ({
         disabled={filter.filters.length === 0}
         hasFilters={filter.filters.length > 0}
       />
-      {filter.filters.length > 0 && (
-        <RemoveGroupButton onClick={removeGroup} />
-      )}
+      {filter.filters.length > 0 && <RemoveGroupButton onClick={removeGroup} />}
     </FilterMenuContainer>
   );
 };

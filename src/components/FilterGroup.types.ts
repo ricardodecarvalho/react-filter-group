@@ -10,11 +10,7 @@ export type OperatorValue =
   | "gt"
   | "gte"
   | "lt"
-  | "lte"
-  | "isempty"
-  | "isnotempty"
-  | "isnull"
-  | "isnotnull";
+  | "lte";
 
 export type LogicOperator = "and" | "or";
 

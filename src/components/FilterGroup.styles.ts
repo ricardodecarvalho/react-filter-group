@@ -91,7 +91,10 @@ export const FilterGroupContainer = styled.div`
     top: calc(1.5rem + 1px); /* start just below the elbow */
     bottom: 0; /* extend to the end of the item */
     width: 2px; /* slightly wider to fully cover */
-    background-color: var(--rfg-bg, #ffffff); /* match page background; adjust if themed */
+    background-color: var(
+      --rfg-bg,
+      #ffffff
+    ); /* match page background; adjust if themed */
   }
 `;
 

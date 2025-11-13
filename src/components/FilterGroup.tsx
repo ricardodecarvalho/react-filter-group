@@ -1,4 +1,3 @@
-import React from "react";
 import { FilterGroupContainer, FilterGroupItem } from "./FilterGroup.styles";
 import type {
   CompositeFilter,

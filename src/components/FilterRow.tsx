@@ -1,4 +1,3 @@
-import { NO_VALUE_OPERATORS } from "./constants";
 import { FilterRowContainer } from "./FilterGroup.styles";
 import type { FilterRowProps, OperatorValue } from "./FilterGroup.types";
 import { useFilterGroupConfig } from "./config";
@@ -10,7 +9,6 @@ const FilterRow = ({ filter, fields, onUpdate, onRemove }: FilterRowProps) => {
   const selectedField =
     fields.find((f) => f.name === filter.field) || fields[0];
   const resolvedOperators = operators[selectedField.type] || operators.text;
-  const needsValue = !NO_VALUE_OPERATORS.includes(filter.operator);
 
   const handleFieldChange = (e: React.ChangeEvent<HTMLSelectElement>): void => {
     const newField = fields.find((f) => f.name === e.target.value);
@@ -56,20 +54,18 @@ const FilterRow = ({ filter, fields, onUpdate, onRemove }: FilterRowProps) => {
         ))}
       </select>
 
-      {needsValue && (
-        <input
-          type={
-            selectedField.type === "numeric"
-              ? "number"
-              : selectedField.type === "date"
-              ? "date"
-              : "text"
-          }
-          value={filter.value?.toString() || ""}
-          onChange={handleValueChange}
-          placeholder="Value..."
-        />
-      )}
+      <input
+        type={
+          selectedField.type === "numeric"
+            ? "number"
+            : selectedField.type === "date"
+            ? "date"
+            : "text"
+        }
+        value={filter.value?.toString() || ""}
+        onChange={handleValueChange}
+        placeholder="Value..."
+      />
 
       <RemoveExpressionButton onClick={onRemove} />
     </FilterRowContainer>

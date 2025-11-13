@@ -1,6 +1,5 @@
-import { useState } from "react";
-import type { CompositeFilter, FilterProps } from "./FilterGroup.types";
 import FilterGroup from "./FilterGroup";
+import type { CompositeFilter, FilterProps } from "./FilterGroup.types";
 import { FilterFieldsContainer } from "./FilterGroup.styles";
 
 const Filter = ({ fields, value, onChange }: FilterProps) => {
