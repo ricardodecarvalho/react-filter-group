@@ -1,10 +1,5 @@
 import { useState } from "react";
-import {
-  Filter,
-  FilterField,
-  CompositeFilter,
-  FilterGroupConfigProvider,
-} from "../src/index";
+import { Filter, FilterField, CompositeFilter } from "../src/index";
 
 const initialValue: CompositeFilter = {
   logic: "and",
@@ -34,7 +29,8 @@ const App = () => {
   return (
     <div className="app">
       <header className="header">
-        <h1>🎯 React Filter Group</h1>
+        <h1>React Filter Group</h1>
+        <p>A React component library for building filter groups</p>
       </header>
 
       <main className="main">

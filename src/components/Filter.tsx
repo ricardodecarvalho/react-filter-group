@@ -4,12 +4,9 @@ import FilterGroup from "./FilterGroup";
 import { FilterFieldsContainer } from "./FilterGroup.styles";
 
 const Filter = ({ fields, value, onChange }: FilterProps) => {
-  const initialFilter: CompositeFilter = value ?? { logic: "and", filters: [] };
-  const [filterState, setFilterState] =
-    useState<CompositeFilter>(initialFilter);
+  const filterValue: CompositeFilter = value ?? { logic: "and", filters: [] };
 
   const handleFilterChange = (newFilter: CompositeFilter): void => {
-    setFilterState(newFilter);
     if (onChange) {
       onChange({ value: newFilter });
     }
@@ -18,7 +15,7 @@ const Filter = ({ fields, value, onChange }: FilterProps) => {
   return (
     <FilterFieldsContainer>
       <FilterGroup
-        filter={filterState}
+        filter={filterValue}
         fields={fields}
         onUpdate={handleFilterChange}
         level={0}
