@@ -1,6 +1,6 @@
 {
   "name": "react-filter-group",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "A React component library for building filter groups",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",

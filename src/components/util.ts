@@ -81,14 +81,6 @@ export const evaluateFilterExpression = <
       return filterValue !== undefined && value < filterValue;
     case "lte":
       return filterValue !== undefined && value <= filterValue;
-    case "isempty":
-      return !value || value === "";
-    case "isnotempty":
-      return !!(value && value !== "");
-    case "isnull":
-      return value === null || value === undefined;
-    case "isnotnull":
-      return value !== null && value !== undefined;
     default:
       return true;
   }
