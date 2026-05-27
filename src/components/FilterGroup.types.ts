@@ -37,9 +37,17 @@ export interface FilterField {
    * Optional custom renderer for the value input. When provided, completely
    * replaces the built-in input (text/number/date/checkbox) for this field.
    * Keep `type` set to the closest builtin so the default operator list still
-   * makes sense — or override operators via `FilterGroupConfigProvider`.
+   * makes sense — or override operators via the `operators` prop below.
    */
   renderValue?: (props: RenderValueProps) => React.ReactNode;
+  /**
+   * Per-field operator override. When provided, this list is used instead of
+   * the per-type operators from `FilterGroupConfigProvider`. Useful when a
+   * field is conceptually different from its `type` (e.g. a custom
+   * autocomplete that only really makes sense with a single "is any of"
+   * operator), without polluting the operators of every other text field.
+   */
+  operators?: Operator[];
 }
 
 export interface Operator {

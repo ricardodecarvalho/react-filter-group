@@ -8,13 +8,16 @@ const FilterRow = ({ filter, fields, onUpdate, onRemove }: FilterRowProps) => {
 
   const selectedField =
     fields.find((f) => f.name === filter.field) || fields[0];
-  const resolvedOperators = operators[selectedField.type] || operators.text;
+  // Field-level override > per-type from provider config > default text ops.
+  const resolvedOperators =
+    selectedField.operators ?? operators[selectedField.type] ?? operators.text;
 
   const handleFieldChange = (e: React.ChangeEvent<HTMLSelectElement>): void => {
     const newField = fields.find((f) => f.name === e.target.value);
     if (!newField) return;
 
-    const newOperators = operators[newField.type] || operators.text;
+    const newOperators =
+      newField.operators ?? operators[newField.type] ?? operators.text;
     onUpdate({
       field: e.target.value,
       operator: newOperators[0].value,
