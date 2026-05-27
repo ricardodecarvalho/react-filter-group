@@ -13,4 +13,5 @@ export type {
   FilterGroupProps,
   FilterRowProps,
   FilterMenuProps,
+  RenderValueProps,
 } from "./components/FilterGroup.types";

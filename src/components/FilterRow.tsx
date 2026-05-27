@@ -54,18 +54,26 @@ const FilterRow = ({ filter, fields, onUpdate, onRemove }: FilterRowProps) => {
         ))}
       </select>
 
-      <input
-        type={
-          selectedField.type === "numeric"
-            ? "number"
-            : selectedField.type === "date"
-            ? "date"
-            : "text"
-        }
-        value={filter.value?.toString() || ""}
-        onChange={handleValueChange}
-        placeholder="Value..."
-      />
+      {selectedField.renderValue ? (
+        selectedField.renderValue({
+          value: filter.value,
+          onChange: (next) => onUpdate({ value: next }),
+          operator: filter.operator,
+        })
+      ) : (
+        <input
+          type={
+            selectedField.type === "numeric"
+              ? "number"
+              : selectedField.type === "date"
+              ? "date"
+              : "text"
+          }
+          value={filter.value?.toString() || ""}
+          onChange={handleValueChange}
+          placeholder="Value..."
+        />
+      )}
 
       <RemoveExpressionButton onClick={onRemove} />
     </FilterRowContainer>

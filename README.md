@@ -138,12 +138,45 @@ Example:
 </FilterGroupConfigProvider>
 ```
 
+## Custom value inputs (renderValue)
+
+Each `FilterField` can override the default value input with its own renderer. Use this to plug in an autocomplete, a custom date picker, a multi-select, or anything else — the library just gets back the value through `onChange` and stores it on the `FilterExpression`.
+
+```tsx
+import { Filter, FilterField } from "react-filter-group";
+import { MyAutocomplete } from "./MyAutocomplete";
+
+const fields: FilterField[] = [
+  {
+    name: "owner.uuid",
+    label: "Owner",
+    type: "text",
+    renderValue: ({ value, onChange, operator }) => (
+      <MyAutocomplete
+        value={value as string | undefined}
+        onPick={(picked) => onChange(picked.uuid)}
+        operator={operator}
+      />
+    ),
+  },
+];
+```
+
+The renderer receives `{ value, onChange, operator }`:
+
+- `value`: current filter value (`unknown` — your renderer narrows it).
+- `onChange(next)`: persist a new value. Any JSON-serializable shape is fine (string, number, array of UUIDs, etc.).
+- `operator`: the currently selected operator, in case the input should differ between e.g. `eq` and `in`.
+
+Keep `type` set to the closest builtin (usually `"text"`) so the default operator list still makes sense, or override the operators for this field type via the provider.
+
 ## Types (summary)
 
 - FieldType: 'text' | 'numeric' | 'date' | 'boolean'
 - OperatorValue: 'eq' | 'neq' | 'contains' | 'notcontains' | 'startswith' | 'endswith' | 'gt' | 'gte' | 'lt' | 'lte' | 'isempty' | 'isnotempty' | 'isnull' | 'isnotnull'
 - LogicOperator: 'and' | 'or'
-- FilterField: { name: string; label: string; type: FieldType }
+- FilterField: { name: string; label: string; type: FieldType; renderValue?: (props: RenderValueProps) => ReactNode }
+- RenderValueProps: { value: unknown; onChange: (next: unknown) => void; operator: OperatorValue }
 - Operator: { value: OperatorValue; label: string }
 - FilterExpression: { field: string; operator: OperatorValue; value?: string | number | boolean | null }
 - CompositeFilter: { logic: LogicOperator; filters: Array<FilterExpression | CompositeFilter> }
