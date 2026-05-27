@@ -36,7 +36,7 @@ export const FilterFieldsContainer = styled.div`
   }
 
   .btn-remove {
-    &: hover {
+    &:hover {
       background-color: var(--rfg-danger, #e30b0b);
       color: var(--rfg-button-hover-fg, #ffffff);
     }
